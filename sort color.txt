@@ -1,0 +1,27 @@
+void swap(int *a, int *b)
+{    
+    *a = *a^*b;
+    *b = *a^*b;
+    *a = *a^*b;
+}
+
+void sortColors(int* nums, int numsSize){
+    
+    int zeros = 0, ones = 0, twos = numsSize - 1;
+    
+    while (ones <= twos) {
+        if (nums[ones] == 0) {
+            if (ones != zeros)
+                swap(&nums[ones], &nums[zeros]);
+            ones++;
+            zeros++;
+        } else if (nums[ones] == 1) {
+            ones++;
+        } else {
+            if (twos != ones)
+                swap(&nums[twos], &nums[ones]);
+            twos--;
+        }
+    }
+
+}
